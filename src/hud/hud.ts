@@ -2,6 +2,7 @@ import { Game } from "../game";
 import { drawText } from "../utils/canvas";
 import { DEBUG_MODE } from "../config";
 import { MiniMap } from "./miniMap";
+import { ActionMenu } from "./actionMenu";
 
 const hudWidthPercent = 0.33;
 const miniMapHeight = 0.4;
@@ -20,6 +21,7 @@ export interface HudWrapperDimensions extends Box {}
 export class Hud {
   public viewport: Viewport;
   public miniMap: MiniMap;
+  public actionMenu: ActionMenu;
 
   private hudWidth: number = 0;
   private hudHeight: number = 0;
@@ -51,16 +53,12 @@ export class Hud {
       this.viewport
     );
 
-    this.actionMenu = new ActionMenu(
-      this.game,
-      {
-        width: this.innerHudWidth,
-        height: this.innerHudHeight - this.miniMap.height,
-        x: this.innerHudX,
-        y: this.miniMap.y + this.miniMap.height + 10,
-      },
-      this.viewport
-    );
+    this.actionMenu = new ActionMenu(this.game, {
+      width: this.innerHudWidth,
+      height: this.innerHudHeight - this.miniMap.height,
+      x: this.innerHudX,
+      y: this.miniMap.y + this.miniMap.height + 10,
+    });
 
     this.notifications = new Notifications(this.game, this.viewport);
   }

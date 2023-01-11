@@ -2,10 +2,10 @@ import { Game } from "../game";
 import { HudWrapperDimensions, Viewport } from "./hud";
 
 export class MiniMap {
-  private readonly width: number;
-  private readonly height: number;
-  private readonly x: number;
-  private readonly y: number;
+  public readonly width: number;
+  public readonly height: number;
+  public readonly x: number;
+  public readonly y: number;
   constructor(
     private game: Game,
     wrapperDimensions: HudWrapperDimensions,
