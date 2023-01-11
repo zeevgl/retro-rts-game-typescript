@@ -1,7 +1,8 @@
 import { DEBUG_MODE } from "./config";
 import { drawText } from "./utils/canvas";
 import { Camera } from "./camera";
-import {UserInput} from './controls/userInput';
+import { UserInput } from "./controls/userInput";
+import { Hud } from "./hud/hud";
 
 enum GameStates {
   PLAYING,
@@ -14,11 +15,12 @@ enum GameStates {
 export class Game {
   private state: GameStates;
   private userInput: UserInput;
-  public readonly camera: Camera;
+  public camera: Camera;
+  public hud: Hud;
 
   constructor(
-    private readonly gameWidth: number,
-    private readonly gameHeight: number,
+    public readonly gameWidth: number,
+    public readonly gameHeight: number,
     public readonly canvas: HTMLCanvasElement
   ) {
     this.camera = new Camera(this);
