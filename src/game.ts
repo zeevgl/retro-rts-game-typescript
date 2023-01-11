@@ -1,14 +1,16 @@
-import {DEBUG_MODE} from './config';
+import { DEBUG_MODE } from "./config";
+import { drawText } from "./utils/canvas";
 
-export const GameStates = {
-  PLAYING: 0,
-  PAUSED: 1,
-  MENU: 2,
-  GAME_OVER: 3,
-  WIN: 4,
-};
+enum GameStates {
+  PLAYING,
+  PAUSED,
+  MENU,
+  GAME_OVER,
+  WIN,
+}
 
 export class Game {
+  private state: GameStates;
   constructor(
     private readonly gameWidth: number,
     private readonly gameHeight: number,
@@ -41,7 +43,7 @@ export class Game {
     this.state = GameStates.PLAYING;
   }
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     if (this.state === GameStates.PLAYING) {
       [this.humanPlayer, ...this.aiPlayers].forEach((player) => {
         player.update(deltaTime, timestamp);
