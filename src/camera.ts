@@ -9,7 +9,7 @@ export class Camera {
   private scrollDirectionHorizontal: number = 0;
   private hoverOnEdgeTick: number = 0;
 
-  constructor(private game: Game, private x = 0, private y = 0) {}
+  constructor(private game: Game, public x = 0, public y = 0) {}
 
   update(deltaTime: number, _timestamp: number) {
     if (this.isScrolling) {
