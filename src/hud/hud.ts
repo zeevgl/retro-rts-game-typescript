@@ -1,20 +1,26 @@
 import { Game } from "../game";
 import { drawText } from "../utils/canvas";
 import { DEBUG_MODE } from "../config";
+import { MiniMap } from "./miniMap";
 
 const hudWidthPercent = 0.33;
 const miniMapHeight = 0.4;
 const maxWidth = 450;
 
-export interface Viewport {
+interface Box {
   x: number;
   y: number;
   width: number;
   height: number;
 }
 
+export interface Viewport extends Box {}
+export interface HudWrapperDimensions extends Box {}
+
 export class Hud {
   public viewport: Viewport;
+  public miniMap: MiniMap;
+
   private hudWidth: number = 0;
   private hudHeight: number = 0;
   private hudX: number = 0;
@@ -78,7 +84,7 @@ export class Hud {
     this.notifications.update(deltaTime, timestamp);
   }
 
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D) {
     ctx.save();
     ctx.translate(this.game.camera.x, this.game.camera.y);
     ctx.fillStyle = "grey";
