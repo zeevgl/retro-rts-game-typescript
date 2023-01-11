@@ -3,6 +3,9 @@ import { drawText } from "./utils/canvas";
 import { Camera } from "./camera";
 import { UserInput } from "./controls/userInput";
 import { Hud } from "./hud/hud";
+import { Player } from "./player/player";
+import { AiPlayer } from "./player/aiPlayer";
+import { EnemyAI } from "./player/enemyAi";
 
 enum GameStates {
   PLAYING,
@@ -18,6 +21,10 @@ export class Game {
   public camera: Camera;
   public hud: Hud;
 
+  public readonly humanPlayer: Player;
+  public readonly aiPlayers: AiPlayer[];
+  public readonly enemyAI: EnemyAI;
+
   constructor(
     public readonly gameWidth: number,
     public readonly gameHeight: number,
@@ -26,19 +33,14 @@ export class Game {
     this.camera = new Camera(this);
     this.userInput = new UserInput(this);
     this.hud = new Hud(this);
-    this.humanPlayer = new Player({
-      name: "player 1",
-      color: "#00ff00",
-      startingPoint: { x: 50, y: 80 },
-      game: this,
-    });
+    this.humanPlayer = new Player(
+      "player 1",
+      "#00ff00",
+      { x: 50, y: 80 },
+      this
+    );
     this.aiPlayers = [
-      new AiPlayer({
-        name: "player 2",
-        color: "#ff0000",
-        startingPoint: { x: 500, y: 400 },
-        game: this,
-      }),
+      new AiPlayer("player 2", "#ff0000", { x: 500, y: 400 }, this),
     ];
     this.enemyAI = new EnemyAI(this);
     this.gameMap = new GameMap(this);
