@@ -3,6 +3,7 @@ import { drawText } from "../utils/canvas";
 import { DEBUG_MODE } from "../config";
 import { MiniMap } from "./miniMap";
 import { ActionMenu } from "./actionMenu";
+import {Notifications} from './notifications';
 
 const hudWidthPercent = 0.33;
 const miniMapHeight = 0.4;
@@ -22,6 +23,7 @@ export class Hud {
   public viewport: Viewport;
   public miniMap: MiniMap;
   public actionMenu: ActionMenu;
+  public notifications: Notifications;
 
   private hudWidth: number = 0;
   private hudHeight: number = 0;
