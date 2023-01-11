@@ -1,6 +1,7 @@
 import { Game } from "../game";
 import { HudWrapperDimensions } from "./hud";
 import { drawText } from "../utils/canvas";
+import { Point2D } from "../utils/point2d";
 
 export class ActionMenu {
   private readonly width: number;
@@ -218,7 +219,7 @@ export class ActionMenu {
     }
   }
 
-  isXYInside(x: number, y: number) {
+  isXYInside({ x, y }: Point2D) {
     return (
       x > this.x &&
       x < this.x + this.width &&
@@ -227,8 +228,11 @@ export class ActionMenu {
     );
   }
 
-  getItemAtXy(originalX: number, originalY: number) {
-    const { x, y } = this.game.camera.adjustPointToCamera(originalX, originalY);
+  getItemAtXy(original: Point2D) {
+    const { x, y } = this.game.camera.adjustPointToCamera(
+      original.x,
+      original.y
+    );
     if (this.isXYInside(x, y)) {
       const itemX = x - this.x;
       const itemY = y - this.y;
