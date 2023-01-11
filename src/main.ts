@@ -1,4 +1,5 @@
 import "./style.css";
+import {Game} from './game';
 
 function initHTML() {
   document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
