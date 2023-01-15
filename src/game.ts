@@ -6,6 +6,7 @@ import { Hud } from "./hud/hud";
 import { Player } from "./player/player";
 import { AiPlayer } from "./player/aiPlayer";
 import { EnemyAI } from "./player/enemyAi";
+import {GameMap} from './map/gameMap';
 
 enum GameStates {
   PLAYING,
@@ -24,6 +25,7 @@ export class Game {
   public readonly humanPlayer: Player;
   public readonly aiPlayers: AiPlayer[];
   public readonly enemyAI: EnemyAI;
+  public gameMap: GameMap;
 
   constructor(
     public readonly gameWidth: number,
