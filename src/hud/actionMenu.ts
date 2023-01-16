@@ -233,7 +233,7 @@ export class ActionMenu {
       original.x,
       original.y
     );
-    if (this.isXYInside(x, y)) {
+    if (this.isXYInside({x, y})) {
       const itemX = x - this.x;
       const itemY = y - this.y;
       const itemIndex = Math.floor(itemY / this.itemWidth);
