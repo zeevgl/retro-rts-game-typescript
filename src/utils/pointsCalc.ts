@@ -4,6 +4,11 @@ export function calcDistance(x1: number, y1: number, x2: number, y2: number) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
+export interface IMoves {
+  xunits: number;
+  yunits: number;
+}
+
 export function calcMoves(
   speed: number,
   distance: number,
@@ -11,7 +16,7 @@ export function calcMoves(
   y1: number,
   x2: number,
   y2: number
-) {
+): IMoves {
   const moves = distance / speed;
   const xunits = (x2 - x1) / moves;
   const yunits = (y2 - y1) / moves;
