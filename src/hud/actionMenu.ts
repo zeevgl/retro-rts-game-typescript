@@ -2,6 +2,8 @@ import { Game } from "../game";
 import { HudWrapperDimensions } from "./hud";
 import { drawText } from "../utils/canvas";
 import { Point2D } from "../utils/point2d";
+import {Unit} from '../units/unit';
+import {ITechTreeItem} from '../units/techTree';
 
 export class ActionMenu {
   private readonly width: number;
@@ -32,7 +34,7 @@ export class ActionMenu {
     ctx.restore();
   }
 
-  drawUnitInfo(ctx: CanvasRenderingContext2D, unit) {
+  private drawUnitInfo(ctx: CanvasRenderingContext2D, unit: Unit) {
     //TODO: render it better later..
     ctx.fillStyle = "#b7bd93";
     ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -71,12 +73,12 @@ export class ActionMenu {
     );
   }
 
-  drawActionMenuOptions(ctx: CanvasRenderingContext2D) {
+  private drawActionMenuOptions(ctx: CanvasRenderingContext2D) {
     this.drawBuildingsCol(ctx);
     this.drawUnitsCol(ctx);
   }
 
-  drawBuildingsCol(ctx: CanvasRenderingContext2D) {
+  private drawBuildingsCol(ctx: CanvasRenderingContext2D) {
     const buildings = this.game.humanPlayer.techTree.getVisibleBuildings();
 
     buildings.forEach((building, index: number) => {
@@ -85,7 +87,7 @@ export class ActionMenu {
     });
   }
 
-  drawUnitsCol(ctx: CanvasRenderingContext2D) {
+  private drawUnitsCol(ctx: CanvasRenderingContext2D) {
     const units = this.game.humanPlayer.techTree.getVisibleUnits();
     const x = this.x + this.itemWidth;
     units.forEach((unit, index) => {
@@ -94,9 +96,9 @@ export class ActionMenu {
     });
   }
 
-  drawItem(
+  private drawItem(
     ctx: CanvasRenderingContext2D,
-    item,
+    item: ITechTreeItem,
     x: number,
     y: number,
     width: number,
@@ -110,10 +112,10 @@ export class ActionMenu {
     if (
       !item.isUnlocked() ||
       (this.game.humanPlayer.productionManager.isBuildingInProgress() &&
-        this.game.humanPlayer.productionManager.buildingProduction.item.unit
+        this.game.humanPlayer.productionManager.buildingProduction.item!.unit
           .name !== item.unit.name) ||
       (this.game.humanPlayer.productionManager.isUnitInProgress() &&
-        this.game.humanPlayer.productionManager.unitProduction.item.unit
+        this.game.humanPlayer.productionManager.unitProduction.item!.unit
           .name !== item.unit.name)
     ) {
       ctx.globalAlpha = 0.2;
@@ -142,9 +144,9 @@ export class ActionMenu {
     ctx.restore();
   }
 
-  drawItemInProgress(
+  private drawItemInProgress(
     ctx: CanvasRenderingContext2D,
-    item,
+    item: ITechTreeItem,
     x: number,
     y: number,
     width: number,
@@ -157,9 +159,9 @@ export class ActionMenu {
     }
   }
 
-  drawItemProgressBar(
+  private drawItemProgressBar(
     ctx: CanvasRenderingContext2D,
-    item,
+    _item: ITechTreeItem,
     x: number,
     y: number,
     width: number,
@@ -190,9 +192,9 @@ export class ActionMenu {
     );
   }
 
-  drawBuildingReadyToPlace(
+  private drawBuildingReadyToPlace(
     ctx: CanvasRenderingContext2D,
-    item,
+    item: ITechTreeItem,
     x: number,
     y: number,
     width: number,
@@ -219,7 +221,7 @@ export class ActionMenu {
     }
   }
 
-  isXYInside({ x, y }: Point2D) {
+  private isXYInside({ x, y }: Point2D) {
     return (
       x > this.x &&
       x < this.x + this.width &&

@@ -48,8 +48,8 @@ export class Unit {
   public readonly height: number;
 
   private readonly color: string;
-  private readonly maxHealth: number;
-  private readonly attackDamage: AttackDamage;
+  public readonly maxHealth: number;
+  public readonly attackDamage: AttackDamage;
   private readonly visionRange: number;
   private readonly attackRange: number;
   private readonly attackCooldown: number;
@@ -63,7 +63,7 @@ export class Unit {
 
   private attackCooldownInProgress: number;
 
-  private health: number;
+  public health: number;
   private isAlive: boolean;
   private isDecaying: boolean;
   private state: UnitStates;

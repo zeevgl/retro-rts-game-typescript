@@ -81,7 +81,6 @@ export class UserInput {
   }
 
   onMouseLeftClicked({ x, y }: MousePosition) {
-    debugger
     if (this.dragging.moved) {
       this.dragging.moved = false;
       return;

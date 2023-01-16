@@ -16,8 +16,8 @@ export interface IProductionItem {
 }
 
 export class ProductionManager {
-  private buildingProduction: IProductionItem;
-  private unitProduction: IProductionItem;
+  public buildingProduction: IProductionItem;
+  public unitProduction: IProductionItem;
   constructor(private player: Player) {
     this.resetBuildingProduction();
     this.resetUnitProduction();
