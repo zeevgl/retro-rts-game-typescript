@@ -1,6 +1,10 @@
 import { Game } from "../game";
 import { AiPlayer, AiStates } from "./aiPlayer";
 import { getClosestUnitOfPlayer } from "../utils/pointsCalc";
+import {UnitGroups, UnitStates} from '../units/unitTypesDefinition';
+import {Unit} from '../units/unit';
+import {ContractionYard} from '../units/buildings/contractionYard';
+import {MapObjects} from '../map/level';
 
 const AISpeed = 800;
 export class EnemyAI {
@@ -39,7 +43,7 @@ export class EnemyAI {
   }
 
   searchAndDestroy(aiPlayer: AiPlayer) {
-    aiPlayer.unitByGroups[UnitGroups.fighter]?.forEach((aiUnit) => {
+    aiPlayer.unitByGroups[UnitGroups.fighter]?.forEach((aiUnit: Unit) => {
       if (
         aiUnit.isAlive &&
         (aiUnit.state === UnitStates.IDLE || aiUnit.state === UnitStates.MOVING)
@@ -94,7 +98,7 @@ export class EnemyAI {
 
   whatToBuild(aiPlayer: AiPlayer) {
     if (aiPlayer.productionManager.isAnyBuildingReadyToBePlace()) {
-      const contractionYard = aiPlayer.units.find((unit) => {
+      const contractionYard = aiPlayer.units.find((unit: Unit) => {
         if (unit.isABuilding() && unit instanceof ContractionYard) {
           return unit;
         }

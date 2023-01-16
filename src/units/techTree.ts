@@ -1,6 +1,12 @@
 import {Player} from '../player/player';
 import {Unit} from './unit';
 import {UnitGroups} from './unitTypesDefinition';
+import {ContractionYard} from './buildings/contractionYard';
+import {Refinery} from './buildings/refinery';
+import {Barracks} from './buildings/barracks';
+import {Infantry} from './units/infantry';
+import {Rocketeer} from './units/rocketeer';
+import {Harvester} from './units/harvester';
 
 export interface ITechTreeItem {
   unit: Unit,

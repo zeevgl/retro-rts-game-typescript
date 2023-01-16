@@ -1,11 +1,17 @@
 import { Game } from "../game";
-import {Resources} from './resources';
-import {ProductionManager} from './productionManager';
+import { Resources } from "./resources";
+import { ProductionManager } from "./productionManager";
+import { TechTree } from "../units/techTree";
+import { Unit } from "../units/unit";
+import { UnitGroups, UnitStates } from "../units/unitTypesDefinition";
+import { Harvester } from "../units/units/harvester";
+import { getClosestUnitOfPlayer } from "../utils/pointsCalc";
+import {MapObjects} from '../map/level';
 
 export class Player {
-  public readonly units: [];
-  public readonly unitByGroups: []; //UnitGroups
-  public readonly selectedUnits: [];
+  public readonly units: Unit[] = [];
+  public readonly unitByGroups: any = {}; //UnitGroups
+  public readonly selectedUnits: Unit[] = [];
 
   public readonly techTree: TechTree;
   public readonly productionManager: ProductionManager;
@@ -51,7 +57,7 @@ export class Player {
     });
   }
 
-  addUnit(unit) {
+  addUnit(unit: Unit) {
     this.units.push(unit);
     this.techTree.updateTechTree(unit);
     if (!this.unitByGroups[unit.group]) {
@@ -144,7 +150,7 @@ export class Player {
     }
   }
 
-  attack(enemyUnit) {
+  attack(enemyUnit: Unit) {
     if (enemyUnit) {
       this.selectedUnits.forEach((unit) => {
         unit.attack(enemyUnit);
@@ -152,7 +158,7 @@ export class Player {
     }
   }
 
-  updateUnitAi(unit) {
+  updateUnitAi(unit: Unit) {
     //WIP...
     //player needs to know which player is the enemy
     //should this code even be in player object? maybe in game object? or in unit object?

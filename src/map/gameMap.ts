@@ -1,10 +1,11 @@
 import { Game } from "../game";
 import { DEBUG_MODE } from "../config";
 import { Level } from "./level";
+import {ContractionYard} from '../units/buildings/contractionYard';
 
 export class GameMap {
-  private readonly mapWidth: number;
-  private readonly mapHeight: number;
+  public readonly mapWidth: number;
+  public readonly mapHeight: number;
   private level: Level;
 
   constructor(private game: Game) {
