@@ -35,7 +35,7 @@ export interface IUnit {
 export class Unit {
   private readonly player: Player;
   private id: string;
-  private readonly name: string;
+  public readonly name: string;
 
   private readonly x: number;
   private readonly y: number;
@@ -51,10 +51,10 @@ export class Unit {
   private readonly projectileClass: any;
   private readonly unitClass: UnitClasses;
   private readonly speed: number;
-  private readonly buildTime: number;
-  private readonly buildAt: any;
+  public readonly buildTime: number;
+  public readonly buildAt: any;
   private readonly group: UnitGroups | null;
-  private readonly cost: number;
+  public readonly cost: number;
 
   private attackCooldownInProgress: number;
 

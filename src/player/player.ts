@@ -1,10 +1,15 @@
 import { Game } from "../game";
+import {Resources} from './resources';
+import {ProductionManager} from './productionManager';
 
 export class Player {
   public readonly units: [];
   public readonly unitByGroups: []; //UnitGroups
   public readonly selectedUnits: [];
 
+  public readonly techTree: TechTree;
+  public readonly productionManager: ProductionManager;
+  public readonly resources: Resources;
   constructor(
     private name: string,
     public color: string,
