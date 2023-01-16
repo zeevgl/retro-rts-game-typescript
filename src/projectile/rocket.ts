@@ -9,7 +9,7 @@ const height = 32;
 const color = "white";
 const speed = 3;
 
-class Rocket extends Projectile {
+export class Rocket extends Projectile {
   private trail: { x: number; y: number }[];
   private degree: number;
   private sprite: any;

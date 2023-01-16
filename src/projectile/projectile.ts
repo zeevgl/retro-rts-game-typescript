@@ -2,6 +2,7 @@ import { Unit } from "../units/unit";
 import { ProjectileStates } from "./projectileState";
 import { calcDistance, calcMoves, IMoves } from "../utils/pointsCalc";
 import {checkCollisionBetweenProjectileAndUnit} from '../utils/collision';
+import {AttackDamage} from '../units/unitTypesDefinition';
 
 export class Projectile {
   private readonly targetUnitLocked: Unit;
@@ -15,7 +16,7 @@ export class Projectile {
     protected width: number,
     protected height: number,
     private color: string,
-    private attackDamage: number,
+    private attackDamage: AttackDamage,
     private speed: number
   ) {
     this.targetUnitLocked = { ...targetUnit };

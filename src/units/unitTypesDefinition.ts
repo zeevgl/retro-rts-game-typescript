@@ -23,3 +23,10 @@ export enum UnitGroups {
   harvesters = "harvesters",
   defenseBuildings = "defenseBuildings",
 }
+
+export interface AttackDamage {
+  [UnitClasses.LIGHT]: number;
+  [UnitClasses.MEDIUM]: number;
+  [UnitClasses.HEAVY]: number;
+  [UnitClasses.BUILDING]: number;
+}

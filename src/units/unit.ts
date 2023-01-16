@@ -1,7 +1,12 @@
 import { Player } from "../player/player";
 import { uuidv4 } from "../utils/general";
 import { Bullet } from "../projectile/bullet";
-import { UnitClasses, UnitGroups, UnitStates } from "./unitTypesDefinition";
+import {
+  AttackDamage,
+  UnitClasses,
+  UnitGroups,
+  UnitStates,
+} from "./unitTypesDefinition";
 import { Projectile } from "../projectile/projectile";
 import { calcDistance, calcMoves, getDegree360 } from "../utils/pointsCalc";
 import { DEBUG_MODE } from "../config";
@@ -19,7 +24,7 @@ export interface IUnit {
   height: number;
   color: string;
   maxHealth: number;
-  attackDamage?: number;
+  attackDamage?: AttackDamage;
   visionRange?: number;
   attackRange?: number;
   attackCooldown?: number;
@@ -33,18 +38,18 @@ export interface IUnit {
 }
 
 export class Unit {
-  private readonly player: Player;
+  public readonly player: Player;
   private id: string;
   public readonly name: string;
 
-  private readonly x: number;
-  private readonly y: number;
-  private readonly width: number;
-  private readonly height: number;
+  public readonly x: number;
+  public readonly y: number;
+  public readonly width: number;
+  public readonly height: number;
 
   private readonly color: string;
   private readonly maxHealth: number;
-  private readonly attackDamage: number;
+  private readonly attackDamage: AttackDamage;
   private readonly visionRange: number;
   private readonly attackRange: number;
   private readonly attackCooldown: number;
@@ -67,9 +72,9 @@ export class Unit {
   private targetUnit: Unit | null;
   private isSelected: boolean;
   private projectiles: Projectile[];
-  private degree: number;
+  protected degree: number;
 
-  private activeAnimation: FrameAnimator | null = null;
+  protected activeAnimation: FrameAnimator | null = null;
   private animations: { [key: string]: FrameAnimator } = {};
 
   constructor({
@@ -81,7 +86,7 @@ export class Unit {
     height,
     color,
     maxHealth,
-    attackDamage = 0,
+    attackDamage = { LIGHT: 0, MEDIUM: 0, HEAVY: 0, BUILDING: 0 },
     visionRange = 0,
     attackRange = 0,
     attackCooldown = 0,
