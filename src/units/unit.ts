@@ -42,12 +42,12 @@ export class Unit {
   private id: string;
   public readonly name: string;
 
-  public readonly x: number;
-  public readonly y: number;
+  public x: number;
+  public y: number;
   public readonly width: number;
   public readonly height: number;
 
-  private readonly color: string;
+  public color: string;
   public readonly maxHealth: number;
   public readonly attackDamage: AttackDamage;
   private readonly visionRange: number;

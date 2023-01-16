@@ -1,23 +1,20 @@
 import { Game } from "../game";
+import {Point2D} from '../utils/point2d';
 
 const LEFT_BUTTON = 0;
 const RIGHT_BUTTON = 2;
 
-export interface MousePosition {
-  x: number;
-  y: number;
-}
 
 export interface MouseHandlers {
-  onMouseLeftClicked?: (position: MousePosition) => void;
-  onMouseRightClicked?: (position: MousePosition) => void;
-  onMouseMove?: (position: MousePosition) => void;
-  onMouseDown?: (position: MousePosition) => void;
-  onMouseUp?: (position: MousePosition) => void;
+  onMouseLeftClicked?: (position: Point2D) => void;
+  onMouseRightClicked?: (position: Point2D) => void;
+  onMouseMove?: (position: Point2D) => void;
+  onMouseDown?: (position: Point2D) => void;
+  onMouseUp?: (position: Point2D) => void;
 }
 
 export class MouseHandler {
-  public position: MousePosition;
+  public position: Point2D;
   public handlers: MouseHandlers = {};
   constructor(private game: Game) {
     this.position = { x: 0, y: 0 };

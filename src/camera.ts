@@ -1,4 +1,5 @@
 import { Game } from "./game";
+import { Point2D } from "./utils/point2d";
 
 const scrollSpeed = 15;
 const hoverOnEdgeTime = 200;
@@ -28,33 +29,33 @@ export class Camera {
     context.translate(-this.x, -this.y);
   }
 
-  scrollStop() {
+  private scrollStop() {
     this.isScrolling = false;
     this.scrollDirectionHorizontal = 0;
     this.scrollDirectionVertical = 0;
   }
 
-  scrollRight() {
+  private scrollRight() {
     this.isScrolling = true;
     this.scrollDirectionHorizontal = 1;
   }
 
-  scrollLeft() {
+  private scrollLeft() {
     this.isScrolling = true;
     this.scrollDirectionHorizontal = -1;
   }
 
-  scrollUp() {
+  private scrollUp() {
     this.isScrolling = true;
     this.scrollDirectionVertical = -1;
   }
 
-  scrollDown() {
+  private scrollDown() {
     this.isScrolling = true;
     this.scrollDirectionVertical = 1;
   }
 
-  validateCameraEdges() {
+  private validateCameraEdges() {
     const { hud, gameMap } = this.game;
 
     if (this.x < 0) {
@@ -70,7 +71,7 @@ export class Camera {
     }
   }
 
-  scrollCamera(x: number, y: number) {
+  scrollCamera({ x, y }: Point2D) {
     const { hud } = this.game;
     const margin = 25;
     let isOnEdge = false;
@@ -112,7 +113,7 @@ export class Camera {
     };
   }
 
-  moveCameraTo(x, y) {
+  moveCameraTo(x: number, y: number) {
     this.x = x;
     this.y = y;
 

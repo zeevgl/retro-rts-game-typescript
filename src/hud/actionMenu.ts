@@ -230,7 +230,7 @@ export class ActionMenu {
     );
   }
 
-  getItemAtXy(original: Point2D) {
+  getItemAtXy(original: Point2D): ITechTreeItem | null {
     const { x, y } = this.game.camera.adjustPointToCamera(
       original.x,
       original.y

@@ -1,6 +1,10 @@
 import { Game } from "../game";
 import { calcDistance } from "../utils/pointsCalc";
-import { MouseHandler, MousePosition } from "./mouse";
+import { MouseHandler } from "./mouse";
+import { Point2D } from "../utils/point2d";
+import { Unit } from "../units/unit";
+import {Messages} from '../hud/messages';
+import {ITechTreeItem} from '../units/techTree';
 
 export enum UserInputStates {
   IDLE = "IDLE",
@@ -28,14 +32,13 @@ export class UserInput {
 
   private state: UserInputStates = UserInputStates.IDLE;
   private mouseHandler: MouseHandler;
-
+  private targetXY: Point2D | null = null;
   constructor(private game: Game) {
     this.mouseHandler = new MouseHandler(game);
-    this.targetXY = null;
     this.initMouseHandlers();
   }
 
-  initMouseHandlers() {
+  private initMouseHandlers() {
     this.mouseHandler.handlers.onMouseLeftClicked =
       this.onMouseLeftClicked.bind(this);
     this.mouseHandler.handlers.onMouseRightClicked =
@@ -55,7 +58,7 @@ export class UserInput {
     }
 
     if (this.state === UserInputStates.PLACE_BUILDING) {
-      const newUnit =
+      const newUnit: Unit =
         this.game.humanPlayer.productionManager.buildingProduction.item.unit;
       newUnit.color = "gray";
       newUnit.x = this.mouseHandler.position.x;
@@ -66,7 +69,7 @@ export class UserInput {
     this.drawSelectionBox(ctx);
   }
 
-  drawSelectionBox(ctx: CanvasRenderingContext2D) {
+  private drawSelectionBox(ctx: CanvasRenderingContext2D) {
     if (this.dragging.active) {
       ctx.beginPath();
       ctx.rect(
@@ -80,7 +83,7 @@ export class UserInput {
     }
   }
 
-  onMouseLeftClicked({ x, y }: MousePosition) {
+  private onMouseLeftClicked({ x, y }: Point2D) {
     if (this.dragging.moved) {
       this.dragging.moved = false;
       return;
@@ -109,13 +112,13 @@ export class UserInput {
     }
   }
 
-  onMouseRightClicked({ x, y }: MousePosition) {
+  private onMouseRightClicked({ x, y }: Point2D) {
     if (this.game.humanPlayer.selectedUnits.length) {
       this.whatWasClicked(x, y);
     }
   }
 
-  whatWasClicked(x: number, y: number) {
+  private whatWasClicked(x: number, y: number) {
     //is it an enemy unit?
     const unitClicked = this.getEnemyUnitInPoint(x, y);
     if (unitClicked) {
@@ -149,7 +152,7 @@ export class UserInput {
     //is it a terrain?
   }
 
-  getEnemyUnitInPoint(x: number, y: number) {
+  private getEnemyUnitInPoint(x: number, y: number) {
     const aiPlayers = this.game.aiPlayers;
     for (let i = 0; i < aiPlayers.length; i++) {
       const unit = aiPlayers[i].getUnitsInPoint(x, y);
@@ -161,8 +164,8 @@ export class UserInput {
     return null;
   }
 
-  onMouseMove({ x, y }: MousePosition) {
-    this.handleMouseDrag(x, y);
+  private onMouseMove({ x, y }: Point2D) {
+    this.handleMouseDrag({ x, y });
 
     if (this.game.camera.scrollCamera(x, y)) {
       this.mouseHandler.setMouseScroll();
@@ -175,7 +178,7 @@ export class UserInput {
     }
   }
 
-  handleActionMenuItem(actionMenuItem) {
+  private handleActionMenuItem(actionMenuItem: ITechTreeItem) {
     if (!actionMenuItem.isUnlocked()) {
       this.game.hud.notifications.notify(Messages.unavailable);
       return;
@@ -204,7 +207,7 @@ export class UserInput {
     }
   }
 
-  handleMouseDrag(x: number, y: number) {
+  private handleMouseDrag({ x, y }: Point2D) {
     if (this.dragging.active) {
       if (
         !this.dragging.moved &&
@@ -218,7 +221,7 @@ export class UserInput {
     }
   }
 
-  onMouseDown({ x, y }: MousePosition) {
+  private onMouseDown({ x, y }: Point2D) {
     if (this.game.hud.isInsideViewport(x, y, 0, 0)) {
       this.dragging.active = true;
       this.dragging.moved = false;
@@ -229,7 +232,7 @@ export class UserInput {
     }
   }
 
-  onMouseUp() {
+  private onMouseUp() {
     this.dragging.active = false;
     if (this.dragging.moved) {
       const x1 = Math.min(this.dragging.x, this.dragging.x2);

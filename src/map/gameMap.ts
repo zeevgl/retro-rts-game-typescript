@@ -6,7 +6,7 @@ import {ContractionYard} from '../units/buildings/contractionYard';
 export class GameMap {
   public readonly mapWidth: number;
   public readonly mapHeight: number;
-  private level: Level;
+  public level: Level;
 
   constructor(private game: Game) {
     this.level = new Level(window.TileMaps.map2, "assets");
