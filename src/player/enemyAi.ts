@@ -1,10 +1,10 @@
 import { Game } from "../game";
 import { AiPlayer, AiStates } from "./aiPlayer";
 import { getClosestUnitOfPlayer } from "../utils/pointsCalc";
-import {UnitGroups, UnitStates} from '../units/unitTypesDefinition';
-import {Unit} from '../units/unit';
-import {ContractionYard} from '../units/buildings/contractionYard';
-import {MapObjects} from '../map/level';
+import { UnitGroups, UnitStates } from "../units/unitTypesDefinition";
+import { Unit } from "../units/unit";
+import { ContractionYard } from "../units/buildings/contractionYard";
+import { MapObjects } from "../map/level";
 
 const AISpeed = 800;
 export class EnemyAI {
@@ -73,7 +73,7 @@ export class EnemyAI {
   }
 
   sendHarvester(aiPlayer: AiPlayer) {
-    aiPlayer.unitByGroups[UnitGroups.harvesters]?.forEach((aiUnit) => {
+    aiPlayer.unitByGroups[UnitGroups.harvesters]?.forEach((aiUnit: Unit) => {
       if (aiUnit.isAlive && aiUnit.state === UnitStates.IDLE) {
         const closestSpiceField =
           this.game.gameMap.level.getClosestSpiceFieldByPosition(
@@ -104,13 +104,15 @@ export class EnemyAI {
         }
       });
 
-      const randomX = Math.random() * 500 - 50;
-      const randomY = Math.random() * 100;
+      if (contractionYard) {
+        const randomX = Math.random() * 500 - 50;
+        const randomY = Math.random() * 100;
 
-      aiPlayer.productionManager.placeBuilding(
-        contractionYard.x + contractionYard.width / 2 + randomX,
-        contractionYard.y + contractionYard.height + 10 + randomY
-      );
+        aiPlayer.productionManager.placeBuilding(
+          contractionYard.x + contractionYard.width / 2 + randomX,
+          contractionYard.y + contractionYard.height + 10 + randomY
+        );
+      }
     } else {
       const items = aiPlayer.techTree.getVisibleBuildings();
       const buildingToBuild = items.filter((item) => !item.exists);

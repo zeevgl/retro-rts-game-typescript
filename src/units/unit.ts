@@ -64,9 +64,9 @@ export class Unit {
   private attackCooldownInProgress: number;
 
   public health: number;
-  private isAlive: boolean;
-  private isDecaying: boolean;
-  private state: UnitStates;
+  public isAlive: boolean;
+  public isDecaying: boolean;
+  public state: UnitStates;
   private moveTargetX: number | null;
   private moveTargetY: number | null;
   private targetUnit: Unit | null;
@@ -134,7 +134,7 @@ export class Unit {
     this.degree = 0;
   }
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     if (!this.isAlive) {
       return;
     }
@@ -150,7 +150,7 @@ export class Unit {
     this.activeAnimation?.update(deltaTime, timestamp);
   }
 
-  updateMove(deltaTime, timestamp) {
+  updateMove(deltaTime: number, timestamp: number) {
     const distance = calcDistance(
       this.centerX,
       this.centerY,
@@ -182,7 +182,7 @@ export class Unit {
     this.y += moves.yunits;
   }
 
-  updateAttack(deltaTime, timestamp) {
+  updateAttack(deltaTime: number, timestamp: number) {
     this.updateAttackCoolDown(deltaTime, timestamp);
     if (this.projectiles.length) {
       const activeProjectile = this.projectiles[0];
@@ -214,7 +214,7 @@ export class Unit {
     }
   }
 
-  updateAttackCoolDown(deltaTime, timestamp) {
+  updateAttackCoolDown(deltaTime: number, timestamp: number) {
     if (this.attackCooldownInProgress > 0) {
       this.attackCooldownInProgress -= deltaTime;
     }

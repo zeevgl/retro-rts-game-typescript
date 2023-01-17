@@ -96,7 +96,7 @@ export class Rocketeer extends Unit {
     this.sprite = sprite;
   }
 
-  drawUnit(ctx) {
+  drawUnit(ctx: CanvasRenderingContext2D) {
     ctx.save();
     const positionCol = this.degreeToPosition(this.degree);
     this.sprite.draw(

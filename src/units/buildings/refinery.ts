@@ -69,7 +69,7 @@ export class Refinery extends Unit {
     this.sprite = sprite;
   }
 
-  drawUnit(ctx) {
+  drawUnit(ctx: CanvasRenderingContext2D) {
     this.sprite.draw(
       ctx,
       this.activeAnimation?.getActiveFrame(),

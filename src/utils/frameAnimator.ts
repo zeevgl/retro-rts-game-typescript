@@ -1,3 +1,5 @@
+import {Sprite} from './sprite';
+
 export class FrameAnimator {
   private readonly onComplete: (() => void) | null;
   private imageFrame: number;
@@ -5,7 +7,7 @@ export class FrameAnimator {
   private totalDt: number;
 
   constructor(
-    private sprite: any,
+    private sprite: typeof Sprite,
     private startIndex: number,
     private endIndex: number,
     private loop: boolean = false,

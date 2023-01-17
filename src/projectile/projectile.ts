@@ -38,7 +38,7 @@ export class Projectile {
     );
   }
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     if (this.state === ProjectileStates.FLYING) {
       this.x += this.moves.xunits;
       this.y += this.moves.yunits;

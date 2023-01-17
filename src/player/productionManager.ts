@@ -39,7 +39,7 @@ export class ProductionManager {
     };
   }
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     if (this.isBuildingInProgress()) {
       this.buildingProduction.tick += deltaTime;
       if (

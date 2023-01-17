@@ -51,7 +51,7 @@ export class ContractionYard extends Unit {
   }
 
   initSprites() {
-    const { positions, sprite } = getSpritePositions(
+    const { sprite } = getSpritePositions(
       389,
       258,
       this.height,
@@ -63,7 +63,7 @@ export class ContractionYard extends Unit {
     this.sprite = sprite;
   }
 
-  drawUnit(ctx) {
+  drawUnit(ctx: CanvasRenderingContext2D) {
     this.sprite.draw(
       ctx,
       this.activeAnimation!.getActiveFrame(),

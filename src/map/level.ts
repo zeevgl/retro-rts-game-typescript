@@ -40,7 +40,7 @@ export class Level {
     this.initLayers();
   }
 
-  update(deltaTime, timestamp) {}
+  update(deltaTime: number, timestamp: number) {}
 
   draw(context: CanvasRenderingContext2D) {
     for (let y = 0; y < this.map.height; y++) {

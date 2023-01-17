@@ -11,7 +11,7 @@ import {MapObjects} from '../map/level';
 export class Player {
   public readonly units: Unit[] = [];
   public readonly unitByGroups: any = {}; //UnitGroups
-  public readonly selectedUnits: Unit[] = [];
+  public selectedUnits: Unit[] = [];
 
   public readonly techTree: TechTree;
   public readonly productionManager: ProductionManager;
@@ -134,7 +134,7 @@ export class Player {
     this.selectedUnits = [];
   }
 
-  moveSelectedUnitsToPosition(x, y, destinationObject = null) {
+  moveSelectedUnitsToPosition(x, y, destinationObject: any = null) {
     if (this.selectedUnits.length) {
       this.selectedUnits.forEach((unit) => {
         unit.moveTo(x, y);

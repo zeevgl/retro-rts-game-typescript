@@ -73,16 +73,16 @@ export class Harvester extends Unit {
     this.sprite = sprite;
   }
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     super.update(deltaTime, timestamp);
     this.harvest(deltaTime, timestamp);
   }
 
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D) {
     super.draw(ctx);
   }
 
-  drawUnit(ctx) {
+  drawUnit(ctx: CanvasRenderingContext2D) {
     ctx.save();
     const position = this.degreeToPosition(this.degree);
     this.sprite.draw(ctx, position, this.x, this.y);
@@ -90,7 +90,7 @@ export class Harvester extends Unit {
     ctx.restore();
   }
 
-  drawUnitRotate(ctx) {
+  drawUnitRotate(ctx: CanvasRenderingContext2D) {
     //this uses canvas rotate to draw. currently not in use
     ctx.save();
 
@@ -132,7 +132,7 @@ export class Harvester extends Unit {
     this.moveTo(this.spiceField.x, this.spiceField.y);
   }
 
-  harvest(deltaTime, timestamp) {
+  harvest(deltaTime: number, timestamp: number) {
     //TODO:Zeev: this function is TOO LONG
     switch (this.harvestingState) {
       case HarvesterState.OnRoutToField:

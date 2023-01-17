@@ -53,7 +53,7 @@ export class Rocket extends Projectile {
     this.sprite = sprite;
   }
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     super.update(deltaTime, timestamp);
     this.pushTrail();
   }

@@ -8,7 +8,7 @@ export class Resources {
   private tick: number = 0;
   constructor(private player: Player) {}
 
-  update(deltaTime, timestamp) {
+  update(deltaTime: number, timestamp: number) {
     if (this.increaseAmount !== 0) {
       this.tick += deltaTime;
       if (this.tick >= this.rate) {

@@ -1,6 +1,6 @@
-import {UnitClasses, UnitGroups, UnitStates} from '../unitTypesDefinition';
-import {IUnit, Unit} from '../unit';
-import {getSpritePositions} from '../../utils/sprite';
+import { UnitClasses, UnitGroups, UnitStates } from "../unitTypesDefinition";
+import { IUnit, Unit } from "../unit";
+import { getSpritePositions } from "../../utils/sprite";
 
 const animationFrames = {
   [UnitStates.SPAWN]: {
@@ -50,7 +50,7 @@ export class Barracks extends Unit {
   }
 
   initSprites() {
-    const { positions, sprite } = getSpritePositions(
+    const { sprite } = getSpritePositions(
       257,
       211,
       this.height,
@@ -62,7 +62,7 @@ export class Barracks extends Unit {
     this.sprite = sprite;
   }
 
-  drawUnit(ctx) {
+  drawUnit(ctx: CanvasRenderingContext2D) {
     this.sprite.draw(
       ctx,
       this.activeAnimation?.getActiveFrame(),
