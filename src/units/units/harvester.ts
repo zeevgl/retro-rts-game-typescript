@@ -1,6 +1,6 @@
 import { UnitClasses, UnitGroups } from "../unitTypesDefinition";
 import { IUnit, Unit } from "../unit";
-import { getSpritePositions } from "../../utils/sprite";
+import {getSpritePositions, Sprite} from "../../utils/sprite";
 import {getClosestUnitOfPlayer} from '../../utils/pointsCalc';
 import {Refinery} from '../buildings/refinery';
 
@@ -34,7 +34,7 @@ export class Harvester extends Unit {
   private dumpSpeedTick: number = 0;
   private spice: number = 0;
   private refinery: any = null;
-  private sprite: any;
+  private sprite: Sprite;
   private angle: number = 0;
 
   constructor({ player, x, y, color }: IUnit) {
@@ -61,7 +61,7 @@ export class Harvester extends Unit {
   }
 
   initSprites() {
-    const { positions, sprite } = getSpritePositions(
+    const { sprite } = getSpritePositions(
       55,
       55,
       this.height,

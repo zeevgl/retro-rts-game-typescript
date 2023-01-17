@@ -1,17 +1,19 @@
 import { DEBUG_MODE } from "../config";
 
-export function Sprite(img, width, height, positions, sizeW, sizeH) {
-  //https://davetayls.me/blog/2013/02/11/drawing-sprites-with-canvas
-  this.img = img;
-  //TODO: remove width and height. it is coming from positions array
-  // this.width = width;
-  // this.height = height;
-  this.positions = positions;
-  this.sizeW = sizeW;
-  this.sizeH = sizeH || sizeW;
-}
-Sprite.prototype = {
-  draw: function (ctx, position, x, y) {
+export class Sprite {
+  public sizeH: number;
+  constructor(
+    private img: HTMLImageElement,
+    public width: number,
+    public height: number,
+    public positions: SpritePosition[],
+    public sizeW: number,
+    sizeH?: number | null
+  ) {
+    this.sizeH = sizeH || sizeW;
+  }
+
+  draw(ctx: CanvasRenderingContext2D, position: number, x: number, y: number) {
     const pos = this.positions[position];
     if (pos) {
       ctx.drawImage(
@@ -28,10 +30,16 @@ Sprite.prototype = {
 
       DEBUG_MODE && ctx.strokeRect(x, y, this.sizeW, this.sizeH);
     }
-  },
-};
+  }
+}
 
-export function drawAllSpritePositions(ctx, sprite, itemSize, cols, rows) {
+export function drawAllSpritePositions(
+  ctx: CanvasRenderingContext2D,
+  sprite: Sprite,
+  itemSize: number,
+  cols: number,
+  rows: number
+) {
   for (let y = 0; y < cols; y++) {
     for (let x = 0; x < rows; x++) {
       sprite.draw(ctx, y * rows + x, x * itemSize, y * itemSize);
@@ -48,15 +56,15 @@ return {
 }
 */
 export function getSpritePositions(
-  singelItemWidth,
-  singelItemHeight,
-  singleItemSizeWidth,
-  cols,
-  rows,
-  filePath,
-  singleItemSizeHeight = null
+  singelItemWidth: number,
+  singelItemHeight: number,
+  singleItemSizeWidth: number,
+  cols: number,
+  rows: number,
+  filePath: string,
+  singleItemSizeHeight: number | null = null
 ) {
-  const positions = [];
+  const positions: SpritePosition[] = [];
 
   for (let j = 0; j < rows; j++) {
     for (let i = 0; i < cols; i++) {
@@ -87,14 +95,25 @@ export function getSpritePositions(
   };
 }
 
-export function getSpriteByPositions(singleItemSize, positions, filePath) {
+export function getSpriteByPositions(
+  singleItemSize: number,
+  positions: SpritePosition[],
+  filePath: string
+) {
   const img = new Image();
   img.src = filePath;
 
-  const sprite = new Sprite(img, null, null, positions, singleItemSize);
+  const sprite = new Sprite(img, 0, 0, positions, singleItemSize);
 
   return {
     positions,
     sprite,
   };
+}
+
+export interface SpritePosition {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }

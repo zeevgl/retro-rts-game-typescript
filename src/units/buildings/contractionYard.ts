@@ -1,6 +1,6 @@
 import { UnitClasses, UnitGroups, UnitStates } from "../unitTypesDefinition";
 import { IUnit, Unit } from "../unit";
-import {getSpritePositions} from '../../utils/sprite';
+import {getSpritePositions, Sprite} from '../../utils/sprite';
 
 const animationFrames = {
   [UnitStates.SPAWN]: {
@@ -28,7 +28,7 @@ const buildTime = 10000;
 const cost = 1000;
 
 export class ContractionYard extends Unit {
-  private sprite: any;
+  private sprite: Sprite;
   constructor({ player, x, y, color }: IUnit) {
     super({
       player,

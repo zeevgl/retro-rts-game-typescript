@@ -7,7 +7,7 @@ export class FrameAnimator {
   private totalDt: number;
 
   constructor(
-    private sprite: typeof Sprite,
+    private sprite: Sprite,
     private startIndex: number,
     private endIndex: number,
     private loop: boolean = false,
@@ -22,7 +22,7 @@ export class FrameAnimator {
   }
 
   static fromAnimationFrame(
-    sprite,
+    sprite: Sprite,
     { start, length, loop, frameDuration },
     options = undefined
   ) {
@@ -36,7 +36,7 @@ export class FrameAnimator {
     );
   }
 
-  update(dt, timestamp) {
+  update(dt: number, _timestamp: number) {
     if (!this.isRunning) {
       return;
     }
@@ -59,7 +59,7 @@ export class FrameAnimator {
     }
   }
 
-  draw(canvas, x, y) {
+  draw(canvas: CanvasRenderingContext2D, x: number, y: number) {
     //use draw to render OR use getActiveFrame manually render
     this.sprite.draw(canvas, this.imageFrame, x, y);
   }

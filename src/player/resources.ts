@@ -1,7 +1,7 @@
 import { Player } from "./player";
 
 export class Resources {
-  private money: number = 0;
+  public money: number = 0;
   private increaseAmount: number = 0;
   private rate: number = 1;
   private increaseBy: number = 12;

@@ -1,7 +1,7 @@
 import { Projectile } from "./projectile";
 import { Unit } from "../units/unit";
 import { getDegree180 } from "../utils/pointsCalc";
-import { getSpritePositions } from "../utils/sprite";
+import {getSpritePositions, Sprite} from "../utils/sprite";
 
 const name = "rocket";
 const width = 15;
@@ -12,7 +12,7 @@ const speed = 3;
 export class Rocket extends Projectile {
   private trail: { x: number; y: number }[];
   private degree: number;
-  private sprite: any;
+  private sprite: Sprite;
   constructor(x: number, y: number, targetUnit: Unit, attackDamage: number) {
     super(
       name,

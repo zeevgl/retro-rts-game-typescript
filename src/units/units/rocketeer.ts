@@ -7,7 +7,7 @@ import {
 import { IUnit, Unit } from "../unit";
 import { Barracks } from "../buildings/barracks";
 import { Rocket } from "../../projectile/rocket";
-import { getSpritePositions } from "../../utils/sprite";
+import {getSpritePositions, Sprite} from "../../utils/sprite";
 
 const animationFrames = {
   [UnitStates.SPAWN]: {
@@ -55,7 +55,7 @@ const buildTime = 600;
 const cost = 300;
 
 export class Rocketeer extends Unit {
-  private sprite: any;
+  private sprite: Sprite;
 
   constructor({ player, x, y, color }: IUnit) {
     super({
@@ -84,7 +84,7 @@ export class Rocketeer extends Unit {
   }
 
   initSprites() {
-    const { positions, sprite } = getSpritePositions(
+    const { sprite } = getSpritePositions(
       185,
       147,
       this.height,

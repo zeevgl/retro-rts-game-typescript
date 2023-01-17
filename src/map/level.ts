@@ -1,6 +1,6 @@
 import { DEBUG_MODE } from "../config";
-import {calcDistance} from '../utils/pointsCalc';
-import {getSpritePositions} from '../utils/sprite';
+import { calcDistance } from "../utils/pointsCalc";
+import { getSpritePositions, Sprite } from "../utils/sprite";
 
 export enum MapObjects {
   SPICE = "SPICE",
@@ -17,15 +17,12 @@ interface MapObject {
 export class Level {
   private tileSize: number = 32;
   private positions: any[] = [];
-  private sprite: any;
+  private sprite: Sprite;
   private tiles: any;
   private objects: any;
   private tileSizeMultiplier: number;
 
   constructor(private map: MapObject, private readonly assetsFolder: string) {
-    this.tileSize = 32;
-    this.sprite = null;
-
     this.tiles = {
       ground: null,
     };
@@ -40,7 +37,7 @@ export class Level {
     this.initLayers();
   }
 
-  update(deltaTime: number, timestamp: number) {}
+  update(_deltaTime: number, _timestamp: number) {}
 
   draw(context: CanvasRenderingContext2D) {
     for (let y = 0; y < this.map.height; y++) {

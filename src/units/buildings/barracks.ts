@@ -1,6 +1,6 @@
 import { UnitClasses, UnitGroups, UnitStates } from "../unitTypesDefinition";
 import { IUnit, Unit } from "../unit";
-import { getSpritePositions } from "../../utils/sprite";
+import { getSpritePositions, Sprite } from "../../utils/sprite";
 
 const animationFrames = {
   [UnitStates.SPAWN]: {
@@ -28,7 +28,7 @@ const buildTime = 900;
 const cost = 600;
 
 export class Barracks extends Unit {
-  private sprite: any;
+  private sprite: Sprite;
   constructor({ player, x, y, color }: IUnit) {
     super({
       player,
