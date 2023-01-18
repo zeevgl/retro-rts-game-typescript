@@ -28,7 +28,7 @@ const buildTime = 900;
 const cost = 600;
 
 export class Barracks extends Unit {
-  private sprite: Sprite;
+  private sprite!: Sprite;
   constructor({ player, x, y, color }: IUnit) {
     super({
       player,
@@ -65,7 +65,7 @@ export class Barracks extends Unit {
   drawUnit(ctx: CanvasRenderingContext2D) {
     this.sprite.draw(
       ctx,
-      this.activeAnimation?.getActiveFrame(),
+      this.activeAnimation!.getActiveFrame(),
       this.x,
       this.y
     );

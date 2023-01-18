@@ -1,3 +1,6 @@
+import { Unit } from "../units/unit";
+import { Player } from "../player/player";
+
 export function calcDistance(x1: number, y1: number, x2: number, y2: number) {
   const dx = x2 - x1;
   const dy = y2 - y1;
@@ -28,9 +31,15 @@ export function calcMoves(
 }
 
 export function getClosestUnitOfPlayer(
-  fromUnit,
-  player,
-  { unitTypeClass = null, ignoreVisionRange = true } = {}
+  fromUnit: Unit,
+  player: Player,
+  {
+    unitTypeClass,
+    ignoreVisionRange,
+  }: { unitTypeClass?: any | null; ignoreVisionRange?: boolean } = {
+    unitTypeClass: null,
+    ignoreVisionRange: true,
+  }
 ) {
   return player.units
     .filter((unit) => {

@@ -55,7 +55,7 @@ const buildTime = 600;
 const cost = 300;
 
 export class Rocketeer extends Unit {
-  private sprite: Sprite;
+  private sprite!: Sprite;
 
   constructor({ player, x, y, color }: IUnit) {
     super({

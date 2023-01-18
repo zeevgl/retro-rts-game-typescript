@@ -74,7 +74,7 @@ const buildTime = 500;
 const cost = 200;
 
 export class Infantry extends Unit {
-  private sprite: Sprite;
+  private sprite!: Sprite;
   constructor({ player, x, y, color }: IUnit) {
     super({
       player,

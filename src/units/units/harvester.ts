@@ -24,6 +24,12 @@ const speed = 1.1;
 const buildTime = 1000;
 const cost = 1000;
 
+export interface SpiceField {
+  x: number;
+  y: number;
+  object: any;
+}
+
 export class Harvester extends Unit {
   private harvestingState: HarvesterState = HarvesterState.Idle;
   private spiceField: any = null;
@@ -34,7 +40,7 @@ export class Harvester extends Unit {
   private dumpSpeedTick: number = 0;
   private spice: number = 0;
   private refinery: any = null;
-  private sprite: Sprite;
+  private sprite!: Sprite;
   private angle: number = 0;
 
   constructor({ player, x, y, color }: IUnit) {
@@ -114,11 +120,11 @@ export class Harvester extends Unit {
     ctx.restore();
   }
 
-  moveTo(x, y) {
+  moveTo(x: number, y: number) {
     super.moveTo(x, y);
   }
 
-  setSpiceField(x, y, object) {
+  setSpiceField(x: number, y: number, object: any) {
     this.spiceField = { x, y, object };
     this.harvestingState = HarvesterState.OnRoutToField;
   }
@@ -132,7 +138,7 @@ export class Harvester extends Unit {
     this.moveTo(this.spiceField.x, this.spiceField.y);
   }
 
-  harvest(deltaTime: number, timestamp: number) {
+  harvest(deltaTime: number, _timestamp: number) {
     //TODO:Zeev: this function is TOO LONG
     switch (this.harvestingState) {
       case HarvesterState.OnRoutToField:

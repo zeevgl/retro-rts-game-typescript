@@ -171,7 +171,7 @@ export class ProductionManager {
     }
   }
 
-  placeBuilding(x, y) {
+  placeBuilding(x: number, y: number) {
     const newUnit = new this.buildingProduction.item!.class({
       player: this.player,
       x,

@@ -28,7 +28,7 @@ const buildTime = 10000;
 const cost = 1000;
 
 export class ContractionYard extends Unit {
-  private sprite: Sprite;
+  private sprite!: Sprite;
   constructor({ player, x, y, color }: IUnit) {
     super({
       player,

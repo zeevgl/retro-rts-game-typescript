@@ -89,7 +89,7 @@ export class MiniMap {
     ctx.restore();
   }
 
-  isXYInside(x, y) {
+  isXYInside(x: number, y: number) {
     return (
       x > this.x &&
       x < this.x + this.width &&

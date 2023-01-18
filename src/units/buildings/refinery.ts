@@ -28,7 +28,7 @@ const buildTime = 1200;
 const cost = 1500;
 
 export class Refinery extends Unit {
-  private sprite: Sprite;
+  private sprite!: Sprite;
   constructor({ player, x, y, color }: IUnit) {
     super({
       player,

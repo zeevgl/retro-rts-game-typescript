@@ -354,7 +354,7 @@ export class Unit {
     ctx.fillText(this.name, this.centerX, this.centerY);
   }
 
-  inPointInUnit(x, y) {
+  inPointInUnit(x: number, y: number) {
     const margin = 20; //so it will be easier to click moving units
     return (
       x >= this.x - margin &&
@@ -382,14 +382,14 @@ export class Unit {
     }
   }
 
-  moveTo(x, y) {
+  moveTo(x: number, y: number) {
     this.setState(UnitStates.MOVING);
     this.moveTargetX = x;
     this.moveTargetY = y;
     this.setDirectionDegree(this.moveTargetX, this.moveTargetY);
   }
 
-  moveToAttack(x, y) {
+  moveToAttack(x: number, y: number) {
     this.moveTo(x, y);
     this.setState(UnitStates.MOVING_TO_ATTACK);
   }
@@ -423,7 +423,7 @@ export class Unit {
     }
   }
 
-  setDirectionDegree(x, y) {
+  setDirectionDegree(x: number, y: number) {
     this.degree = getDegree360(this.centerX, this.centerY, x, y);
   }
 

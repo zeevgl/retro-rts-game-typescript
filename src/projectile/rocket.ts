@@ -12,7 +12,7 @@ const speed = 3;
 export class Rocket extends Projectile {
   private trail: { x: number; y: number }[];
   private degree: number;
-  private sprite: Sprite;
+  private sprite!: Sprite;
   constructor(x: number, y: number, targetUnit: Unit, attackDamage: number) {
     super(
       name,
